@@ -1,0 +1,51 @@
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid #000000;"></canvas>
+
+<!-- <img id="canvasImg" alt="Right click to save me!"> -->
+
+<form id="myForm" method="post" action="/changeattr">
+	
+	<select class="drawing-style" name="color"> 
+		<option value="">-Please select a color-</option>
+	  <option value="blue">Blue</option>
+	  <option value="red">Red</option>
+	  <option value="green">Green</option>
+	  <option value="black">Black</option>
+	</select>
+
+	<select class="drawing-style" name="line_width"> 
+		<option value="">-Please select a line width-</option>
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+	  <option value="3">3</option>
+	  <option value="4">4</option>
+	  <option value="5">5</option>
+	  <option value="6">6</option>
+	  <option value="7">7</option>
+	  <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
+	</select>
+
+</form>
+
+
+	<!-- IF THEY ARE LOGGED IN, SHOW THEM SAVE, AND LOGOUT, AND VIEW ALL SAVED DRAWINGS -->
+	<div id="with_this">
+		Hey!
+		<button id="log_out">Log out</button>,
+		<button id="save">Save your masterpiece!</button>
+		<button id="show_drawings">See your saved drawings!</button>
+	</div>
+
+	<!-- <form id="saving" method="post" action="/save-image">
+		<input type="text"  name="drawing[title]" value="Your Image"> 
+		<input type="hidden" id="image-data" name="drawing[image_data]"> 
+		<input type="submit" value="save">
+	</form> -->
+	<!-- ONLY SHOW THIS SHIT IF THEY AREN'T LOGGED INNN DOE -->
+	<div id="overwrite">
+		Want to save your beautiful masterpieces to view them later?
+		<button id="log_in">Log in!</button>
+		or
+		<button id="create_account">Create an account!</button>
+	</div>
