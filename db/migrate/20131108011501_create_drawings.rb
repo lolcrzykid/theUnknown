@@ -4,8 +4,6 @@ class CreateDrawings < ActiveRecord::Migration
   		t.belongs_to :user
   		t.string :title 
   		t.binary :image_data
-
-
   		t.timestamps
   	end
   end

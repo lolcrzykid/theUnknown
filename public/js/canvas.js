@@ -59,8 +59,7 @@ $( document ).ready(function() {
 			}).done(function(d){
 				if(d == 'true'){
 					console.log('true')
-					$('#overwrite').css("display","none")
-					$('#with_this').css("display","block")
+					window.location.assign('/')
 				}else{
 					alert('You entered your information incorrectly')
 				}	
@@ -83,7 +82,7 @@ $( document ).ready(function() {
 				data: {email: email, password: password}
 			}).done(function(d){
 				if(d){
-					alert('INVALID EMAIL MOFUCKA')
+					alert('invalid email, try again')
 				}
 			})
 
@@ -104,8 +103,35 @@ $( document ).ready(function() {
 	}
 	logOutFunction();
 
-});
+	var saveButton = $('#save')
+	var saveFunction = function() {
+		saveButton.on('click', function(e){
+			debugger
+			$.ajax({
+				url: '/save',
+				type: 'post',
+				data: canvasElement.toDataURL()
+			}).done(function(){
+				$('#saved').html("saved!")
+			})
+		})
+	}
+	saveFunction();
 
+	var showButton = $('#show')
+	var showFunction = function() {
+		showButton.on('click', function(e){
+			$.ajax({
+				url: '/show',
+				type: 'get'
+			}).done(function(){
+				window.location.assign('/show')
+			})
+		})
+	}
+	showFunction();
+
+});
 
 // $( "#saving" ).submit(function(e) {
 //   data = canvasElement.toDataURL("image/png")

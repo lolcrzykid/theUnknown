@@ -11,14 +11,6 @@ ActiveRecord::Base.establish_connection(adapter: 'postgresql', database: 'Unknow
 
 enable :sessions
 
-def check_if_valid_user(email,password)
-	user = User.find_by_email(email)
-	if user 
-		return true if user.password == password
-	end
-	return false
-end
-
 # session[:user_id]
 get '/'  do 
 	erb :index
@@ -37,7 +29,6 @@ end
 post '/createaccount' do
 	user = User.create params
 	return "Your email was invalid!" unless user.id
-	session[:user_id] = user.id
 end
 
 post '/changeattr' do
@@ -48,34 +39,18 @@ post '/changeattr' do
 	return attributes.to_json
 end
 
-# ###### save route
+post '/save' do
+	d = params.flatten.join.gsub(/[ ]/, '+')
+	d.gsub!(/data:image\/png/, 'data:image/png;')     
+	# puts params
+	# puts d
+	Drawing.create(user_id: current_user.id, image_data: d)
+end
 
-# post '/save-image' do
-  
-
-# 	#redirect if !logged_in?
-
-# 	# save the file using params data
-#     drawing = current_user.drawings.new(params[:drawing])
-#     if drawing.save
-#       if request.xhr?
-#         return [ 200,  
-#           {"Content-Type" => "text/plain"}, # the hash of headers
-#           ["Saved successfully"]     
-#           ]
-#       else
-#         	redirect "/show-image/#{drawing.id}"
-#       end  # redirect to display image
-#     else
-#       # render error
-#     end
-# end
-
-# get '/show-image/:id' do
-#    @drawing = Drawing.find( params[:id] )
-   
-#    erb :"show-image"
-# end
+get '/show' do
+	@d = Drawing.all
+	erb :show
+end
 
 get '/logout' do
 	session.clear

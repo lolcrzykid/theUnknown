@@ -28,20 +28,20 @@
 
 </form>
 
-
+<%if current_user%>
 	<!-- IF THEY ARE LOGGED IN, SHOW THEM SAVE, AND LOGOUT, AND VIEW ALL SAVED DRAWINGS -->
 	<div id="with_this">
-		Hey!
-		<button id="log_out">Log out</button>,
-		<button id="save">Save your masterpiece!</button>
-		<button id="show_drawings">See your saved drawings!</button>
+		Hey, <%= current_user.email %>!
+		<button id="log_out">Log out</button>
+		<button id="save">Save your masterpiece!</button><p id="saved"></p>
+		<button id="show">See your saved drawings!</button>
 	</div>
-
 	<!-- <form id="saving" method="post" action="/save-image">
 		<input type="text"  name="drawing[title]" value="Your Image"> 
 		<input type="hidden" id="image-data" name="drawing[image_data]"> 
 		<input type="submit" value="save">
 	</form> -->
+<%else%>
 	<!-- ONLY SHOW THIS SHIT IF THEY AREN'T LOGGED INNN DOE -->
 	<div id="overwrite">
 		Want to save your beautiful masterpieces to view them later?
@@ -49,3 +49,6 @@
 		or
 		<button id="create_account">Create an account!</button>
 	</div>
+<%end%>
+
+<img id="testing">

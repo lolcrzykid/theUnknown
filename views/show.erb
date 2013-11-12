@@ -1,0 +1,5 @@
+<%@d.each do |drawing|%>	
+	<%if drawing.user_id == current_user.id%>
+		<a href="<%= drawing.image_data %>">Drawing <%= drawing.id %></a><br/>
+	<%end%>	
+<%end%>
